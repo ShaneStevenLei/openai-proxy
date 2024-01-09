@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+      args:
+        - HTTP_PROXY=${HTTP_PROXY}
+    container_name: openai-proxy
+    restart: always
+    ports:
+      - "${PORT}:8080"
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 256M
